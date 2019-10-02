@@ -3,6 +3,17 @@ const bodyParser = require('body-parser');
 const UsersModel = require('../models/usersModel');
 const router = express.Router();
 
+
+/**
+* Users - Add new user
+* @api public - auth not required (for testing purposes)
+* @method POST
+* 
+* @param {String} name
+* @param {String} authorization
+* @param {String} deviceToken
+* @param {String} fingerPrint
+*/
 router.post('/addUser', bodyParser.json(), (req, res) => {
     UsersModel.addNewUser({
         name: req.body.name,

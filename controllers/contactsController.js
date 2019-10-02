@@ -5,6 +5,17 @@ const UsersModel = require('../models/usersModel');
 const authMiddleware = require('../middlewares/authMiddleware');
 const router = express.Router();
 
+/**
+ * Contacts - Add New Contact
+ * @api private - auth required
+ * @method POST
+ * 
+ * @param {String} firstname
+ * @param {String} lastname
+ * @param {String} email
+ * @param {String} mobile
+ * @param {String} userId
+ */
 router.post('/addContact', bodyParser.json(), authMiddleware, (req, res) => {
     const checkValid = UsersModel.isValidData(req.body);
 
@@ -33,6 +44,15 @@ router.post('/addContact', bodyParser.json(), authMiddleware, (req, res) => {
     }
 });
 
+
+/**
+* Contacts - get all user contacts
+* @api private - auth required
+* @method POST
+* 
+* @param {String | Number} pageNum
+* @param {String} userId
+*/
 router.post('/getList', bodyParser.json(), authMiddleware, (req, res) => {
     ContactsModel.getAllUserContacts(req.userId, req.body.pageNum,
         (err, data) => {
@@ -49,6 +69,14 @@ router.post('/getList', bodyParser.json(), authMiddleware, (req, res) => {
         });
 });
 
+
+/**
+* Contacts - get recent contacts
+* @api private - auth required
+* @method POST
+*
+* @param {String} userId
+*/
 router.post('/getRecentList', bodyParser.json(), authMiddleware, (req, res) => {
     ContactsModel.getRecentContacts(req.userId,
         (err, data) => {

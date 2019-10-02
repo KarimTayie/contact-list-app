@@ -1,5 +1,12 @@
 const UsersModel = require('../models/usersModel');
 
+/**
+ * Auth middleware
+ * Adds userId property to req if user exists
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 const auth = (req, res, next) => {
     if (req.body) {
         UsersModel.findUser({

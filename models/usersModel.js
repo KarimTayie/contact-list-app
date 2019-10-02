@@ -28,7 +28,7 @@ UsersModel.findUser = (userData, cb) => {
 };
 
 /**
- * validing users model data
+ * validing users model data with validator
  */
 UsersModel.isValidData = (data) => {
     const response = { case: true, error: [] };
