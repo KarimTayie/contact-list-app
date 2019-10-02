@@ -18,7 +18,15 @@ UsersModel.addNewUser = (userData, cb) => {
     user.save((err, db) => {
         cb(err, db);
     });
-}
+};
+
+UsersModel.findUser = (userData, cb) => {
+    UsersModel.model.findOne(userData,
+        (err, db) => {
+            cb(err, db);
+        });
+};
+
 /**
  * validing users model data
  */
@@ -50,6 +58,6 @@ UsersModel.isValidData = (data) => {
     }
 
     return response;
-}
+};
 
 module.exports = UsersModel;

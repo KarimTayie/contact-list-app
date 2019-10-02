@@ -2,9 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ContactsModel = require('../models/contactsModel');
 const UsersModel = require('../models/usersModel');
+const authMiddleware = require('../middlewares/authMiddleware');
 const router = express.Router();
 
-router.post('/addContact', bodyParser.json(), (req, res) => {
+router.post('/addContact', bodyParser.json(), authMiddleware, (req, res) => {
     const checkValid = UsersModel.isValidData(req.body);
 
     if (checkValid.case) {
@@ -32,7 +33,7 @@ router.post('/addContact', bodyParser.json(), (req, res) => {
     }
 });
 
-router.post('/getList', bodyParser.json(), (req, res) => {
+router.post('/getList', bodyParser.json(), authMiddleware, (req, res) => {
     ContactsModel.getAllUserContacts(req.userID, req.body.pageNum,
         (err, data) => {
             if (err) {
@@ -48,7 +49,7 @@ router.post('/getList', bodyParser.json(), (req, res) => {
         });
 });
 
-router.post('/getRecentList', bodyParser.json(), (req, res) => {
+router.post('/getRecentList', bodyParser.json(), authMiddleware, (req, res) => {
     ContactsModel.getRecentContacts(req.userId,
         (err, data) => {
             if (err) {
