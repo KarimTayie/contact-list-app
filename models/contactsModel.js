@@ -27,7 +27,7 @@ const ContactsSchema = new Schema({
 });
 
 // For pagination purposes
-contacts.plugin(mongoosePaginate);
+ContactsSchema.plugin(mongoosePaginate);
 
 // Register contacts model
 const ContactsModel = mongoose.model('contacts', ContactsSchema);
