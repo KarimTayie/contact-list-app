@@ -1,12 +1,16 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
 
 // Importing routes
 const contactRouter = require('./controllers/contactsController');
 const userRouter = require('./controllers/usersController');
+
+// Setup morgan logger
+app.use(morgan('tiny'));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
