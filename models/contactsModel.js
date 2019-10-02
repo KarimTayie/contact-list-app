@@ -39,14 +39,14 @@ ContactsModel.addNewContact = (contactData, cb) => {
     });
 };
 
-ContactsModel.getAllList = (userId, pageNum, cb) => {
+ContactsModel.getAllUserContacts = (userId, pageNum, cb) => {
     ContactsModel.model.paginate({userId}, {page: pageNum, limit: 5},
         (err, db) => {
             cb(err, db);
         });
 };
 
-ContactsModel.getRecentList = (userId, cb) => {
+ContactsModel.getRecentContacts = (userId, cb) => {
     ContactsModel.model.find({userId}, {}, {sort: {time: -1}, limit: 5},
         (err, db) => {
             cb(err, db);
