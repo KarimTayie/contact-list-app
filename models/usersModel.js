@@ -14,14 +14,14 @@ const UsersSchema = new Schema({
 const UsersModel = mongoose.model('users', UsersSchema);
 
 UsersModel.addNewUser = (userData, cb) => {
-    const user = new UsersModel.model(userData);
+    const user = new UsersModel(userData);
     user.save((err, db) => {
         cb(err, db);
     });
 };
 
 UsersModel.findUser = (userData, cb) => {
-    UsersModel.model.findOne(userData,
+    UsersModel.findOne(userData,
         (err, db) => {
             cb(err, db);
         });

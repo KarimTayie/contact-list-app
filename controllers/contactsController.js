@@ -14,7 +14,7 @@ router.post('/addContact', bodyParser.json(), authMiddleware, (req, res) => {
             lastname: req.body.lastname,
             email: req.body.email,
             mobile: req.body.mobile,
-            userID: req.userId
+            userId: req.userId
         },
         (err, data) => {
             if (err) {
@@ -34,7 +34,7 @@ router.post('/addContact', bodyParser.json(), authMiddleware, (req, res) => {
 });
 
 router.post('/getList', bodyParser.json(), authMiddleware, (req, res) => {
-    ContactsModel.getAllUserContacts(req.userID, req.body.pageNum,
+    ContactsModel.getAllUserContacts(req.userId, req.body.pageNum,
         (err, data) => {
             if (err) {
                 res.json(`An error occured while getting all contacts from database, error is ${err}`);

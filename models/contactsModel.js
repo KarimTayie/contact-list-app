@@ -33,21 +33,21 @@ ContactsSchema.plugin(mongoosePaginate);
 const ContactsModel = mongoose.model('contacts', ContactsSchema);
 
 ContactsModel.addNewContact = (contactData, cb) => {
-    const contact = new ContactsModel.model(contactData);
+    const contact = new ContactsModel(contactData);
     contact.save((err, db) => {
         cb(err, db);
     });
 };
 
 ContactsModel.getAllUserContacts = (userId, pageNum, cb) => {
-    ContactsModel.model.paginate({userId}, {page: pageNum, limit: 5},
+    ContactsModel.paginate({userId}, {page: pageNum, limit: 5},
         (err, db) => {
             cb(err, db);
         });
 };
 
 ContactsModel.getRecentContacts = (userId, cb) => {
-    ContactsModel.model.find({userId}, {}, {sort: {time: -1}, limit: 5},
+    ContactsModel.find({userId}, {}, {sort: {time: -1}, limit: 5},
         (err, db) => {
             cb(err, db);
         });
