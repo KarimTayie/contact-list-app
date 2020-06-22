@@ -1,7 +1,7 @@
 {
-  "name": "vapulus-task",
+  "name": "contact-list-app",
   "version": "1.0.0",
-  "description": "Vapulus Back-End Task",
+  "description": "Contact List App",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
